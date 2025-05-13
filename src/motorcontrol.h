@@ -24,27 +24,68 @@
 // RobotCar Dyvelbot - Motorsteuerung
 void driveCar(boolean drive)
 {
-    if (drive == true)
-    {
-        /**
-        if(getDistance() < 20)
+    if (drive == true) {
+        if (getLineSensorLeft() == 1 && getLineSensorRight() == 1)
         {
+            motorDrive(100, 100); 
+            Serial.println("Left side on line");
+            setBlinker(false, false);
+            setFahrlicht(true);
+            
+        } else if(getLineSensorLeft() == 0 && getLineSensorRight() == 1){
+            motorDrive(50,35);
+            setFahrlicht(false);
+            setBlinker(false, true);
+
+
+        }  else if(getLineSensorLeft() == 1 && getLineSensorRight() == 0){
+            motorDrive(35,50);
+            setFahrlicht(false);
+            setBlinker(true, false);
+            
+
+        }   else if(getLineSensorLeft() == 0 && getLineSensorRight() == 0){
+            motorDrive(-30,-30);
+            setFahrlicht(false);
+           setBlinker(false, false);
+        }
+         /** else {et
+            motorStop();
+        }*/
+       /**
+       if(getLineSensorLeft() == 1){
+        Serial.println("Left sensor 1");
+       }
+        if(getLineSensorRight() == 1){
+            Serial.println("Right sensor 1");
+        } */
+    } else {
+        motorStop(); // Motoren anhalten
+    }
+
+}
+        
+/**        if(getDistance() < 20 || getDistance() != -1) //Detect object ~ 20cm away from robot
+        { 
             motorStop();
             Serial.println("Obstacle detected in " + String(getDistance()));
             hupen();
             return;
-        } else if(getDistance() > 20) { */
-            if(getLineSensorLeft() == 0 && getLineSensorRight() == 1){
-                motorDrive(100,100);
-            }
-            if(getLineSensorLeft() == 1 && getLineSensorRight() == 1){
+        } else if(getDistance() > 20) {  */
+/**            if(getLineSensorLeft() == 1 && getLineSensorRight() == 1){ // If robot is on the line
+                motorDrive(100, 100);
+                Serial.println("Robot on line");
+            } else if(getLineSensorLeft() == 1 && getLineSensorRight() == 0){ // If right side went off the line
                 motorDrive(20,100);
-            }
-            if(getLineSensorLeft() == 0 && getLineSensorRight() == 0){
+                Serial.println("Right side off");
+            } else if(getLineSensorLeft() == 0 && getLineSensorRight() == 1){ // If left side went off the line
                 motorDrive(100,20);
-            }
-            
-
+                Serial.println("Left side off");
+            } else if(getLineSensorLeft() == 0 && getLineSensorRight() == 0){ // if robot is off the line
+                motorDrive(10, 50);
+                Serial.println("Robot off line"); 
+            } */
+//        }
   //          Serial.println("Motors turning");
 //        }
 //        Serial.write("Drive car\n");
@@ -56,15 +97,4 @@ void driveCar(boolean drive)
          // - motor.h: setMotorSpeed(int lineLeft, int lineRight)  0..255 als Parameterwerte
          // - liniensensor.h: getLineSensorValueLeft() und getLineSensorValueRight()
          // - entfernungssensor.h: getDistanceSensorValue() um Hindernisse zu erkennen
-
-    }
-    else
-    {
-        motorStop(); // Motoren anhalten
-    }
-
-}
-
-
-
 #endif

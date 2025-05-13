@@ -34,6 +34,7 @@ void setup()
   initBrightnessSensor();
   initLineSensor();
   Serial.println("Setup completed");
+//  if(checkBatterie() < ) TODO: Check Battery Charge
 }
 
 void loop()

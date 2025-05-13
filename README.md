@@ -6,7 +6,7 @@ Planning: Maxim \
 Building: Phi
 
 ## Todo
-[ ] Driving \
-[X] Line Detection \
+[X] Driving \
+[/] Line Detection \
 [ ] Obstacle Detection \
 [ ] Obstacle Avoidance 
