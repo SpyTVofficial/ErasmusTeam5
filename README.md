@@ -7,6 +7,7 @@ Building: Phi
 
 ## Todo
 [X] Driving \
-[/] Line Detection \
+[X] Driving LED Front \
+[X] Line Detection \
 [ ] Obstacle Detection \
 [ ] Obstacle Avoidance 

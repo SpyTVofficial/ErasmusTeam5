@@ -29,25 +29,25 @@ void driveCar(boolean drive)
         {
             motorDrive(100, 100); 
             Serial.println("Left side on line");
-            setBlinker(false, false);
             setFahrlicht(true);
+            setBlinker(false, false);
             
         } else if(getLineSensorLeft() == 0 && getLineSensorRight() == 1){
-            motorDrive(50,35);
+            motorDrive(50,25);
             setFahrlicht(false);
             setBlinker(false, true);
 
-
         }  else if(getLineSensorLeft() == 1 && getLineSensorRight() == 0){
-            motorDrive(35,50);
+            motorDrive(25,50);
             setFahrlicht(false);
             setBlinker(true, false);
             
-
         }   else if(getLineSensorLeft() == 0 && getLineSensorRight() == 0){
-            motorDrive(-30,-30);
+            delay(100);
+            motorDrive(-10,-50);
             setFahrlicht(false);
-           setBlinker(false, false);
+            setBlinker(false, false);
+
         }
          /** else {et
             motorStop();
