@@ -34,11 +34,11 @@ void setup()
   initBrightnessSensor();
   initLineSensor();
   Serial.println("Setup completed");
+  Serial.println("Battery voltage: " + String(getBatterieVoltage()) + " V");
 //  if(checkBatterie() < ) TODO: Check Battery Charge
 }
 
-void loop()
-{
+void loop(){
   // Motorsteuerung
   driveCar(true); // Motoren einschalten und der "Straße" folgen (siehe motorcontrol.h)
 

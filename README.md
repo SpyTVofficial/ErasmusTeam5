@@ -2,7 +2,7 @@
 
 ## Team
 Coding: Ian \
-Planning: Maxim \
+Planning: Maksym \
 Building: Phi
 
 ## Todo

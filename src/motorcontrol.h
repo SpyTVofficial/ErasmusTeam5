@@ -25,70 +25,60 @@
 void driveCar(boolean drive)
 {
     if (drive == true) {
-        if (getLineSensorLeft() == 1 && getLineSensorRight() == 1)
+        
+        float distance = getDistance();
+
+        Serial.println("Distance: " + String(distance));
+        if (getLineSensorLeft() == 0 && getLineSensorRight() == 1)
         {
-            motorDrive(100, 100); 
-            Serial.println("Left side on line");
+            motorDrive(50, 50); 
             setFahrlicht(true);
             setBlinker(false, false);
-            
-        } else if(getLineSensorLeft() == 0 && getLineSensorRight() == 1){
-            motorDrive(50,25);
+        
+        } else if(getLineSensorLeft() == 0 && getLineSensorRight() == 0){
+            motorDrive(40,15);
             setFahrlicht(false);
             setBlinker(false, true);
 
-        }  else if(getLineSensorLeft() == 1 && getLineSensorRight() == 0){
-            motorDrive(25,50);
+        }  else if(getLineSensorLeft() == 1 && getLineSensorRight() == 1){
+            motorDrive(15,40);
             setFahrlicht(false);
             setBlinker(true, false);
-            
-        }   else if(getLineSensorLeft() == 0 && getLineSensorRight() == 0){
-            delay(100);
-            motorDrive(-10,-50);
-            setFahrlicht(false);
-            setBlinker(false, false);
-
         }
-         /** else {et
+  
+        if(distance < 1){
             motorStop();
-        }*/
-       /**
-       if(getLineSensorLeft() == 1){
-        Serial.println("Left sensor 1");
-       }
-        if(getLineSensorRight() == 1){
-            Serial.println("Right sensor 1");
-        } */
+            delay(300);
+            motorDrive(25,25);
+            Serial.println("motor 0");
+        } else if(distance < 3){
+            motorDrive(25,25);
+            delay(300);
+            motorDrive(25,25);
+            Serial.println("motor 5");
+        } else if(distance < 5){
+            motorDrive(25,25);
+            delay(300);
+            motorDrive(25,25);
+            Serial.println("motor 10");
+        } else if(distance < 7){
+            motorDrive(25,25);
+            delay(300);
+            motorDrive(25,25);
+            Serial.println("motor 20");
+        } else if(distance < 10){
+            motorDrive(25,25);
+            delay(300);
+            motorDrive(25,25);
+            Serial.println("motor 30");
+        } else {
+            
+        }
     } else {
         motorStop(); // Motoren anhalten
     }
 
 }
-        
-/**        if(getDistance() < 20 || getDistance() != -1) //Detect object ~ 20cm away from robot
-        { 
-            motorStop();
-            Serial.println("Obstacle detected in " + String(getDistance()));
-            hupen();
-            return;
-        } else if(getDistance() > 20) {  */
-/**            if(getLineSensorLeft() == 1 && getLineSensorRight() == 1){ // If robot is on the line
-                motorDrive(100, 100);
-                Serial.println("Robot on line");
-            } else if(getLineSensorLeft() == 1 && getLineSensorRight() == 0){ // If right side went off the line
-                motorDrive(20,100);
-                Serial.println("Right side off");
-            } else if(getLineSensorLeft() == 0 && getLineSensorRight() == 1){ // If left side went off the line
-                motorDrive(100,20);
-                Serial.println("Left side off");
-            } else if(getLineSensorLeft() == 0 && getLineSensorRight() == 0){ // if robot is off the line
-                motorDrive(10, 50);
-                Serial.println("Robot off line"); 
-            } */
-//        }
-  //          Serial.println("Motors turning");
-//        }
-//        Serial.write("Drive car\n");
          // HIER KOMMT DIE STEUERUNG DER MOTOREN HIN.
          // Dabei müssen die Motoren enstsprechend der Sensorwerte
          // gesteuert werden, damit der Roboter auf dem gewünschten Kurs bleibt
