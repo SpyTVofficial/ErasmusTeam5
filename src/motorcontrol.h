@@ -34,26 +34,20 @@ void driveCar(boolean drive)
 
         switch (sensorState) {
             case 1:  // Left = 0, Right = 1
-                motorDrive(80, 80);
+                motorDrive(120, 120);
                 setFahrlicht(true);
                 setBlinker(false, false);
                 break;
                 
             case 0:  // Left = 0, Right = 0
-                motorDrive(40, 15);
-                setFahrlicht(false);
-                setBlinker(false, true);
-                break;
-            case 2:  // Left = 1, Right = 0
-                motorDrive(50, -50);
-                delay(500);
-                setFahrlicht(false);
-                setBlinker(true, true);
-                break;
-            case 3:  // Left = 1, Right = 1
-                motorDrive(15, 40);
+                motorDrive(50, 25);
                 setFahrlicht(false);
                 setBlinker(true, false);
+                break;
+            case 3:  // Left = 1, Right = 1
+                motorDrive(25, 50);
+                setFahrlicht(false);
+                setBlinker(false, true);
                 break;
             // Optional default case if needed
             // default:
@@ -83,27 +77,47 @@ void driveCar(boolean drive)
 
             switch (distanceCase) {
                 case 0:
+                   motorStop();
+                    delay(200);  // Brief pause before starting maneuver
+                    
+                    // Back up slightly
+                    motorDrive(-60, -60);
+                    delay(800);
                     motorStop();
+                    delay(200);
+                    
+                    // Turn approximately 180 degrees by running motors in opposite directions
+                    // Adjust the speed values and delay time based on your robot's characteristics
+                    setBlinker(true, true);  // Turn on both blinkers for the U-turn
+                    motorDrive(-70, 70);  // Left backward, right forward for sharp turn
+                    delay(1500);  // Duration determines how far it turns - adjust for 180°
+                    
+                    // Stop briefly to stabilize
+                    motorStop();
+                    delay(200);
+                    
+                    // Resume forward motion after completing the turn
+                    setBlinker(false, false);
                     break;
                 case 1:
-                    motorDrive(25, 25);
+                    motorDrive(-35, -35);
                     delay(300);
-                    motorDrive(25, 25);
+                    motorDrive(15, 15);
                     break;
                 case 2:
-                    motorDrive(25, 25);
+                    motorDrive(-15, -15);
                     delay(300);
-                    motorDrive(25, 25);
+                    motorDrive(15, 15);
                     break;
                 case 3:
-                    motorDrive(25, 25);
+                    motorDrive(15, 15);
                     delay(300);
-                    motorDrive(25, 25);
+                    motorDrive(15, 15);
                     break;
                 case 4:
-                    motorDrive(25, 25);
+                    motorDrive(15, 15);
                     delay(300);
-                    motorDrive(25, 25);
+                    motorDrive(15, 15);
                     break;
                 default:
                     // No action for distance >= 10
